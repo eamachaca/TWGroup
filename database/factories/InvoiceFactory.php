@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Invoice;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InvoiceFactory extends Factory
@@ -22,7 +23,8 @@ class InvoiceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'date'=>$this->faker->date,
+            'type'=>$this->faker->numberBetween(1,5)
         ];
     }
 }

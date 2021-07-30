@@ -15,6 +15,10 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('seller_id')->constrained('users');
+            $table->integer('type');//ok, i assumed if u use integer although using some projects using string to use with configs/translation from Laravel
             $table->timestamps();
         });
     }
