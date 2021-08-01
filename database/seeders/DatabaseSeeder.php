@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)
-            ->hasInvoices(30, function (array $attributes, User $user) {
+        User::factory(3)
+            ->hasInvoices(10, function (array $attributes, User $user) {
                 return ['seller_id' => $user->id];
             })->create();
-        Product::factory(5000)->create();
+        Product::factory(150)->create();
     }
 }
