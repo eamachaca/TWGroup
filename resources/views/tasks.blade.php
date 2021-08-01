@@ -1,6 +1,10 @@
 @extends('home')
 
+@section('right_header')
+    <a href="{{route('create_task')}}" class="btn btn-primary btn-rounded">{{__('challenge.tasks.create')}}</a>
+@endsection
 @section('challenge')
+
     <table class="table table-hover">
         <thead>
         <tr>
@@ -18,7 +22,7 @@
                 <td>{{$users->firstWhere('id', $task->user_id)->name}}</td>
                 <td>
                     @if($task->user_id == \Illuminate\Support\Facades\Auth::user()->id)
-                        <a href="#" class="btn btn-primary btn-rounded">Primary</a>
+                        <a href="{{route('log_list',$task->id)}}" class="btn btn-secondary btn-rounded">Logs</a>
                     @endif
                 </td>
             </tr>
