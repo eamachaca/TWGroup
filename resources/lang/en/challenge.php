@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'mail_send' => ':user_name has created a Task Log in :task_name.',
     'id' => 'ID',
     'back' => 'Back',
     'user' => 'User',
@@ -16,9 +17,10 @@ return [
     ],
     'logs' => [
         'name' => 'Log Name',
-        'name_help' => 'Log Name',
+        'name_help' => 'Log Name is only reference',
         'comments' => 'Log Comments',
         'list' => 'Log List',
         'created_at' => 'Created At',
+        'create' => 'Create Log',
     ],
 ];

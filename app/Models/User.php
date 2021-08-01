@@ -40,4 +40,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the logs for the task.
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    /**
+     * Get the logs for the task.
+     */
+    public function authorTasks()
+    {
+        return $this->hasMany(Task::class, 'author_id');
+    }
 }

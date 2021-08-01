@@ -18,9 +18,10 @@
             <tr>
                 <td>{{$log->id}}</td>
                 <td>{{$log->name}}</td>
-                <td>{{$log->created_at}}</td>
+                <td>{{$log->created_at->format('d/m/Y H:i')}}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
+    <a href="{{route('task_list')}}" class="btn btn-info">{{__('challenge.back')}}</a>
 @endsection
