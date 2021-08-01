@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LogRequest;
 use App\Http\Requests\TaskRequest;
 use App\Service\FifthChallengeService;
 use Illuminate\Contracts\Foundation\Application;
@@ -70,7 +71,7 @@ class TaskController extends Controller
      */
     public function createLog($id)
     {
-        return view('task_create', $this->fifthChallengeService->getCreateLog($id));
+        return view('log_create', $this->fifthChallengeService->getCreateLog($id));
     }
 
     /**
@@ -78,9 +79,9 @@ class TaskController extends Controller
      *
      * @return RedirectResponse
      */
-    public function storeLog(TaskRequest $request)
+    public function storeLog(LogRequest $request)
     {
         $this->fifthChallengeService->saveLog($request->validated());
-        return redirect()->route('task_list');
+        return redirect()->route('log_list',$request->task_id);
     }
 }

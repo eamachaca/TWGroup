@@ -2,8 +2,13 @@
 
 namespace App\Service;
 
+use App\Mail\LogCreated;
+use App\Models\Log;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class FifthChallengeService
 {
@@ -24,7 +29,12 @@ class FifthChallengeService
 
     public function saveTask(array $validated)
     {
-        Task::create($validated);
+        try {
+            Task::create($validated);
+            Session::flash('success', 'Task was created successful!');
+        } catch (\Exception $ignored) {
+            Session::flash('error', "Task wasn't created successful!");
+        }
     }
 
     public function getLogsFromTask($id)
@@ -39,5 +49,20 @@ class FifthChallengeService
         $task = Task::find($id);
         $title = __('challenge.logs.create');
         return compact('task', 'title');
+    }
+
+    public function saveLog(array $validated)
+    {
+        DB::beginTransaction();
+        try {
+            $log = Log::with(['task', 'task.user', 'task.author'])->find(Log::create($validated)->id);
+            Mail::to($log->task->author)->send(new LogCreated($log));
+            Session::flash('success', 'Log was created successful!');
+            DB::commit();
+        } catch (\Exception $ignored) {
+            dd($ignored);
+            Session::flash('error', "Log wasn't created successful!");
+            DB::rollBack();
+        }
     }
 }
