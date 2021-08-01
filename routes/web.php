@@ -14,5 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+   return view('welcome');
+});
+Route::get('first', function () {
+    dd(
+        (new \App\Service\FirstChallengeService)->getFirstQuestionFromAllInvoice(),
+        (new \App\Service\FirstChallengeService)->getFirstQuestionFromAnInvoice(1),
+        (new \App\Service\FirstChallengeService)->getSecondQuestion(),
+        (new \App\Service\FirstChallengeService)->getThirdQuestion()
+    );
     return view('welcome');
 });
