@@ -9,7 +9,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -82,6 +81,6 @@ class TaskController extends Controller
     public function storeLog(LogRequest $request)
     {
         $this->fifthChallengeService->saveLog($request->validated());
-        return redirect()->route('log_list',$request->task_id);
+        return redirect()->route('log_list', $request->task_id);
     }
 }

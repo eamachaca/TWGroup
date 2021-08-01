@@ -16,7 +16,8 @@
         </thead>
         <tbody>
         @foreach($tasks as $task)
-            <tr>
+            <tr @if($task->max_date->lt($now))class="table-danger"
+                @elseif($task->max_date->eq($now))class="table-warning" @endif>
                 <td>{{$task->id}}</td>
                 <td>{{$task->name}}</td>
                 <td>{{$users->firstWhere('id', $task->user_id)->name}}</td>
