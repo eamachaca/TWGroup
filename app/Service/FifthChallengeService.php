@@ -6,6 +6,7 @@ use App\Mail\LogCreated;
 use App\Models\Log;
 use App\Models\Task;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -16,8 +17,9 @@ class FifthChallengeService
     {
         $users = User::all();
         $tasks = Task::all();
+        $now = Carbon::now()->toDate();
         $title = __('challenge.tasks.list');
-        return compact('users', 'tasks', 'title');
+        return compact('users', 'tasks', 'title', 'now');
     }
 
     public function getCreateTask()

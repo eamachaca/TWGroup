@@ -9,6 +9,7 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $dates = ['max_date'];
     protected $fillable = ['name', 'description', 'author_id', 'max_date', 'user_id'];
 
     /**
