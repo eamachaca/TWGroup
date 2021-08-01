@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    dd(\App\Models\Invoice::with('products')->inRandomOrder()->first());
    return view('welcome');
 });
 Route::get('first', function () {

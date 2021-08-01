@@ -7,6 +7,7 @@ use App\Models\Log;
 use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -62,9 +63,13 @@ class FifthChallengeService
             Session::flash('success', 'Log was created successful!');
             DB::commit();
         } catch (\Exception $ignored) {
-            dd($ignored);
             Session::flash('error', "Log wasn't created successful!");
             DB::rollBack();
         }
+    }
+
+    public function hasPermission($id)
+    {
+        return Task::find($id)->user_id == Auth::user()->id;
     }
 }

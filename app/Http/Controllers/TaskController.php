@@ -56,20 +56,22 @@ class TaskController extends Controller
     /**
      * Display a logs of the task.
      *
-     * @return Application|Factory|View
+     * @return Application|Factory|View|RedirectResponse
      */
     public function show($id)
     {
+        if (!$this->fifthChallengeService->hasPermission($id)) return redirect()->route('task_list');
         return view('task_show', $this->fifthChallengeService->getLogsFromTask($id));
     }
 
     /**
      * Display a creation of the resource.
      *
-     * @return Application|Factory|View
+     * @return Application|Factory|View|RedirectResponse
      */
     public function createLog($id)
     {
+        if (!$this->fifthChallengeService->hasPermission($id)) return redirect()->route('task_list');
         return view('log_create', $this->fifthChallengeService->getCreateLog($id));
     }
 
